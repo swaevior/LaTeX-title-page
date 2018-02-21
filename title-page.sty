@@ -1,0 +1,40 @@
+\ProvidesPackage{title-test}[18 Feb 2018 v0.1]
+\typeout{Using test style.}
+
+\RequirePackage[small,sf,bf]{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{tikz}
+
+\RequirePackage{setspace}
+\RequirePackage[titles]{tocloft}
+
+\renewcommand{\maketitle}{ %
+    \setlength{\textheight}{30cm}
+    \setlength{\voffset}{-1in}
+    \setlength{\topmargin}{-3pt}
+    \setlength{\headheight}{0pt}
+    \setlength{\headsep}{0pt}
+    \setlength{\footskip}{0pt}
+    \vspace{3ex} %
+    \begin{center} %
+        {\ifdef{\MyTitle}{\MakeUppercase{{\MyTitle}}}{}}\vspace{1ex} %
+        \vspace{-9mm} %
+        {\ifdef{\subTitle}{\MakeUppercase{{\subTitle}}}{}} \\ %
+
+        \vspace{20cm} %
+
+        \framebox{ % page break issues here?
+        \begin{tabular}{c} %
+            \fontsize{3.5mm}{1.2em}\selectfont %
+            \ifdef{\Revision}{Revision \Revision .}{}\\ %
+            \ifdef{\releaseMonth}{\releaseMonth}{} \ifdef{\releaseYear}{\releaseYear}{}\\[7mm] %
+            \ifdef{\DocumentNumber}{Document No. \DocumentNumber}{}\\[7mm] %
+            \fontsize{2.5mm}{1.2em}\selectfont %
+            \copyright\hspace{.25em} \ifdef{\releaseYear}{\releaseYear}{} %
+        \end{tabular} %
+        }
+    \end{center} %
+    \newpage %
+} %
+
+\ProcessOptions\relax
